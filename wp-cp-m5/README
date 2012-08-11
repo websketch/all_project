@@ -1,0 +1,133 @@
+README for portal-cp
+====================
+
+
+Prerequisites
+-------------
+1.  JSDK 1.4;
+2.  MySQL 4.1;
+3.  Tomcat 5.0.28;
+
+
+Deployment
+----------
+"ant; ant cvslog"
+
+
+Delivery (Release)
+------------------
+1.  Edit build-release.properties, instead tag.nightly.current with current date tag, tag.nightly.previous with previous tag;
+2.  "ant -f build-release.xml release"
+
+
+INSTALL
+-------
+
+Option 1 - CVS based
+1.  Check out portal-cp module from CVS repository;
+2.  Copy build.properties.sample to build.properties, then customize it according to the real environment;
+3.  Run 'ant catalina-deploy';
+
+Option 2 - Distribution files based
+
+
+Build system
+------------
+-   build.xml           Developer orientied
+-   build-release.xml   Manager orientied
+-   build-deploy.xml    Maintainer orientied
+
+
+-   Checklist
+    Portal-CP-M5-N20050928-App.tar.gz
+    Portal-CP-M5-N20050928-Banner.tar.gz
+    Portal-CP-M5-N20050928-Data.tar.gz
+    Portal-CP-M5-N20050928-Lib.tar.gz
+    Portal-CP-M5-N20050928-Src.tar.gz
+    CP-M4-N20050928-Photo.tar.gz
+
+-   Untar
+    $ tar zxvf Portal-CP-M5-N20050928-App.tar.gz
+    $ tar zxvf Portal-CP-M5-N20050928-Lib.tar.gz
+    $ tar zxvf Portal-CP-M5-N20050928-Banner.tar.gz
+    $ tar zxvf Portal-CP-M5-N20050928-Data.tar.gz
+    $ tar zxvf Portal-CP-M5-N20050928-Src.tar.gz
+    $ tar zxvf CP-M4-N20050928-Photo.tar.gz
+
+-   Photo mapping (optional)
+    $ ant photo-mapping
+    or
+    $ mv ../../chinaportal/html/mediafiles/photos/* images/photo
+    $ mv ../../chinaportal/html/mediafiles/sports/*.jpg images/photo/large
+    $ mv ../../chinaportal/html/mediafiles/wttc/*.jpg images/photo/large
+    $ mv ../../chinaportal/html/mediafiles/news/* images/news
+
+-   Set up database (required)
+    mysql > create database portal_cp_m5;
+    mysql > use portal_cp_m5;
+    mysql > source ../portal-cp-data/portal_cp_m5_data.dmp;
+
+-   Set up Tomcat (optional)
+    $ cp src/conf/catalina-portal-cp.xml portal-cp.xml
+    Then replace each @???@ token with specific value in portal-cp.xml
+    $ cp portal-cp.xml $CATALINA_HOME/conf/Catalina/local/
+
+-   Deploy (required)
+    $ cd portal-cp/webapp
+    $ jar -xf ../portal-cp.war
+    $ rm -f ../portal-cp.war
+    $ mv ../lib WEB-INF
+    $ mv ../portal-cp.jar WEB-INF/lib
+    $ mv ../portal-cp-i18n.jar WEB-INF/lib
+
+-   Run
+    Now start tomcat.
+
+
+-   Configuration for onsite_data.sh (required)
+    change items with from_ prefix, which are for CP-M4 database;
+    change items with to_ prefix, which are for Portal-CP-M5 database;
+    $ source onsite_data.sh news
+    $ source onsite_data.sh comment
+    $ source onsite_data.sh thai
+
+
+
+Performance Tuning
+------------------
+
+-   MySQL (Recommended)
+
+    /etc/mysql/my.cnf
+    Set query_cache_size more than 50M, so that IO can be lower.
+
+-   Tomcat (Recommended)
+
+    CATALINA_HOME/conf/server.xml
+    Set bufferSize="8092"
+
+    Use the latest confiugration file
+    src/conf/catalina-portal-cp.xml
+
+-   Ehcache for hibernate (Optional)
+
+    Use the latest configuration file
+
+-   Apache (Recommended)
+
+    Use apache HTTP server to process Image and Static file
+    /etc/apache2/workers2.properties
+    ------- Sample begin -----------
+    [uri:/portal-cp/*.do]
+    info=Prefix mapping
+
+    [uri:/portal/*.jsp]
+    info=Extension mapping
+
+    [uri:/portal-cp/*]
+    info=Map the whole webapp
+    ------- Sample end -------------
+
+-   Java Compiler (Optional)
+
+    Use IBM Jikes instead of Sun JDK

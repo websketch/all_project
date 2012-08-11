@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+  "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>ChinaPortal</display-name>
+
+  <!-- Action Servlet Configuration -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class> 
+
+    <!--
+    Tiles config files are now declared with each TilesPlugin in struts-config.xml.
+    Declaring a tiles config file here makes it available to *all* TilesPlugins.
+    This is useful to have common declarations.
+    <init-param>
+       <param-name>definitions-config</param-name>
+       <param-value>/WEB-INF/tiles-defs.xml,/WEB-INF/tiles-tests-defs.xml,
+                    /WEB-INF/tiles-tutorial-defs.xml,
+                    /WEB-INF/tiles-examples-defs.xml</param-value>
+    </init-param>
+    -->
+
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>validate</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <!-- Action Servlet Mapping -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- Struts Tag Library Descriptor -->
+  <!--taglib>
+    <taglib-uri>/tags/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/tags/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-html.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/tags/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+      <taglib-uri>/tags/sitemesh-decorator</taglib-uri>
+      <taglib-location>/WEB-INF/tld/sitemesh-decorator.tld</taglib-location>
+  </taglib>
+  <taglib>
+      <taglib-uri>/tags/sitemesh-page</taglib-uri>
+      <taglib-location>/WEB-INF/tld/sitemesh-page.tld</taglib-location>
+  </taglib-->
+ 
+</web-app>

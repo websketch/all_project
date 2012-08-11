@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+<!-- !DOCTYPE web-app PUBLIC 
+	"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+	"http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app -->
+  <display-name>ChinaPortal</display-name>
+  <filter>
+    <filter-name>RequestFilter</filter-name>
+    <filter-class>com.mediazone.filter.RequestFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter>
+    <filter-name>VisitFilter</filter-name>
+    <filter-class>com.mediazone.filter.VisitFilter</filter-class>
+  </filter> 
+  <filter-mapping>
+        <filter-name>RequestFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+        <filter-name>RequestFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+        <filter-name>VisitFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+        <filter-name>VisitFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <!-- Action Servlet Configuration -->
+  <servlet>
+	  
+	<servlet-name>NewServlet</servlet-name>
+	<servlet-class>com.chinaportal.portal.aol.AOLExportNewsMetaData</servlet-class>
+	
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+	  
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/struts/common.xml</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>config/content</param-name>
+      <param-value>/WEB-INF/struts/content.xml</param-value>
+    </init-param>
+	
+	<init-param>
+      <param-name>config/sports</param-name>
+      <param-value>/WEB-INF/struts/sports.xml</param-value>
+    </init-param>
+	
+	<init-param>
+      <param-name>config/adult</param-name>
+      <param-value>/WEB-INF/struts/adult.xml</param-value>
+    </init-param>
+	  	  
+	<init-param>
+      <param-name>config/aol</param-name>
+      <param-value>/WEB-INF/struts/aol.xml</param-value>
+    </init-param>
+	  	  
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>2</param-value>
+    </init-param>
+	  
+    <init-param>
+      <param-name>listings</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>detail</param-name>
+      <param-value>2</param-value>
+    </init-param>
+	  
+    <load-on-startup>2</load-on-startup>
+	  
+  </servlet>
+
+  <session-config>
+    <session-timeout>10</session-timeout>
+  </session-config> 
+
+  <!-- Action Servlet Mapping -->
+  <servlet-mapping>
+  	<servlet-name>NewServlet</servlet-name>
+  	<url-pattern>/newsExport</url-pattern>
+  	
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+  <!-- The Welcome File List -->
+  <welcome-file-list>
+    <welcome-file>/getHomePage.do</welcome-file>
+  </welcome-file-list>
+  <!-- 		
+  <error-page>
+  	<exception-type>java.lang.Exception</exception-type>
+  	<location>/error.jsp</location>
+  </error-page>
+  -->
+  <!-- Struts Tag Library Descriptor -->
+  <taglib>
+    <taglib-uri>/tags/struts-bean</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+  </taglib>
+	
+  <taglib>
+    <taglib-uri>/tags/struts-html</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-html.tld</taglib-location>
+  </taglib>
+	
+  <taglib>
+    <taglib-uri>/tags/struts-logic</taglib-uri>
+    <taglib-location>/WEB-INF/tld/struts-logic.tld</taglib-location>
+  </taglib>
+
+  <taglib>
+    <taglib-uri>/tags/jstl-fmt</taglib-uri>
+    <taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+  </taglib>
+
+<!--
+  <taglib>
+      <taglib-uri>/tags/sitemesh-decorator</taglib-uri>
+      <taglib-location>/WEB-INF/tld/sitemesh-decorator.tld</taglib-location>
+  </taglib>
+  <taglib>
+      <taglib-uri>/tags/sitemesh-page</taglib-uri>
+      <taglib-location>/WEB-INF/tld/sitemesh-page.tld</taglib-location>
+  </taglib>
+ -->
+</web-app>

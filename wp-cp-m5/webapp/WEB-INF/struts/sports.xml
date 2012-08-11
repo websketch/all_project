@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	
+	<form-beans>
+		<form-bean name="pageForm" type="sample.PageForm"/>         
+	</form-beans>
+	
+	<!-- ========== Global Forward Definitions ============================== -->
+	<global-forwards>
+		<forward   name="logon"  path="/login.jsp"/>
+	</global-forwards>
+  
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+	
+		<action path="/HomepageCsll"    forward="/homepage_csll.jsp" />
+		<action path="/HomepageCba"     forward="/homepage_cba.jsp" />
+		<action path="/MainGames"       forward="/main_games.jsp" />
+		<action path="/OtherGames"      forward="/other_games.jsp" />
+		<action path="/MatchDetail"     forward="/match_detail.jsp" />
+		<action path="/PlayerDetail"    forward="/player_detail.jsp" />
+		<action path="/TeamDetail"      forward="/team_detail.jsp" />
+		<action path="/TeamList"        forward="/team_list.jsp" />
+		<action path="/NewsList"        forward="/news_list.jsp" />
+		<action path="/NewsView"        forward="/news_biew.jsp" />
+		<action path="/Purchase"        forward="/purchase.jsp" />
+		<action path="/AllMatchsCBA"    forward="/cba06_allmatch.jsp" />
+		
+    	<action path="/Homepage" type="com.chinaportal.portal.sports.SportsAction" scope="request" >
+      		<forward name="success" path="/homepage.jsp" />
+    	</action>	
+    	<action path="/HomepageItem" type="com.chinaportal.portal.sports.CSLAction" scope="request" >
+      		<forward name="csl" path="/homepage_csl.jsp" />
+      		<forward name="csll" path="/homepage_csll.jsp" />
+      		<forward name="cba" path="/homepage_cba.jsp" />
+      		<forward name="wttc" path="/homepage_wttc.jsp" />
+      		<forward name="swc" path="/homepage_swc.jsp" />
+      		<forward name="fiba" path="/homepage_fiba.jsp" />
+      		<forward name="ng10" path="/homepage_ng10.jsp" />
+      		<forward name="cba06" path="/homepage_cba06.jsp" />
+    	</action>
+    		
+	</action-mappings>
+	
+	<message-resources parameter="content.MessageResources"  key="org.apache.struts.action.MESSAGE"/>
+	<message-resources parameter="sports.Sports" key="sports"/>  
+	
+</struts-config>

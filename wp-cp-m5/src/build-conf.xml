@@ -1,0 +1,27 @@
+<project name="configuration">
+
+
+    <patternset id="pattern.conf.dist">
+        <include name="commons-logging.properties"/>
+        <include name="ehcache.xml"/>
+        <include name="hibernate.cfg.xml"/>
+        <include name="hibernate.properties"/>
+        <include name="log4j.xml"/>
+        <include name="man.properties"/>
+        <include name="sitename.properties"/>
+        <include name="special_ip.properties"/>
+    </patternset>
+
+    <patternset id="pattern.conf.dev">
+        <include name="commons-logging.properties"/>
+        <include name="ehcache.xml"/>
+        <include name="hibernate.cfg.xml"/>
+        <include name="hibernate.properties"/>
+        <include name="log4j.properties"/>
+        <include name="man.properties"/>
+        <include name="sitename.properties"/>
+        <include name="special_ip.properties"/>
+    </patternset>
+
+
+</project>

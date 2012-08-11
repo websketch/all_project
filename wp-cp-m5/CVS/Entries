@@ -1,0 +1,11 @@
+/.cvsignore/1.1.2.5/Mon Jul 18 04:00:00 2005//TPortal-CP-M5
+/README/1.1.4.7/Fri Dec  9 03:13:07 2005//TPortal-CP-M5
+/build-release.properties.sample/1.1.2.7/Wed Jan 18 05:19:01 2006//TPortal-CP-M5
+/build-release.xml/1.1.2.21/Wed Jan 18 05:19:01 2006//TPortal-CP-M5
+/build-sample.xml/1.1.2.3/Fri Jul  1 02:04:18 2005//TPortal-CP-M5
+/build.properties.sample/1.1.2.11/Thu Mar  2 02:34:41 2006//TPortal-CP-M5
+/build.xml/1.1.2.37/Wed Jan 18 05:19:01 2006//TPortal-CP-M5
+D/data////
+D/lib////
+D/src////
+D/webapp////

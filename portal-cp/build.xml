@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="portal-cp" default="deploy" basedir=".">
+
+    <property environment="env" />    
+    <property file="build.properties"/>
+    <!--tstamp>
+        <format property="current.date" pattern="yyyy-MM-dd hh:mm"/>
+    </tstamp>
+    <echo message="Build Time: ${current.date}"/-->
+    
+    <!-- predefine classpath -->
+    <path id="compile.classpath">
+        <pathelement location="${lib.dir}/commons-beanutils-1.7.0.jar"/>
+        <pathelement location="${lib.dir}/commons-digester-1.7.jar"/>
+        <pathelement location="${lib.dir}/servlet-api.jar"/>
+        <pathelement location="${lib.dir}/struts-1.2.4.jar"/>
+    </path>
+
+    <!-- init directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${webapp.dir}/WEB-INF/classes"/>
+        <mkdir dir="${webapp.dir}/WEB-INF/lib"/>
+    </target>
+
+    <!-- compile source code -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}"
+               destdir="${build.dir}/classes"
+               encoding="${source.encoding}"
+               debug="${debug.mode}"
+               verbose="${debug.mode}"
+               deprecation="${debug.mode}"
+               target="${jvm.version}">
+            <classpath refid="compile.classpath" />
+        </javac>
+    </target>
+    
+    <!-- Build mediaozne binary -->
+    <target name="build" depends="compile">
+        <jar jarfile="${build.dir}/${project.name}.jar" basedir="${build.dir}/classes">
+        </jar>
+    </target>
+
+    <target name="deploy" depends="build, prepare">
+        <copy todir="${webapp.dir}/WEB-INF/lib">
+            <fileset dir="${build.dir}">
+                <include name="${project.name}.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="prepare" depends="init">
+        <copy todir="${webapp.dir}/WEB-INF/classes">
+            <fileset dir="${conf.dir}">
+                <include name="log4j.properties"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+                <include name="commons-beanutils-1.7.0.jar"/>
+                <include name="commons-digester-1.7.jar"/>
+                <include name="struts-1.2.4.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="${webapp.dir}/WEB-INF/classes"/>
+        <delete dir="${webapp.dir}/WEB-INF/lib"/>
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="cvslog">
+        <cvschangelog destfile="changelog.xml" daysinpast="${daysinpast}"/>
+        <style in="changelog.xml"
+               out="changelog.html"
+               style="${ant.home}/etc/changelog.xsl">
+            <param name="title" expression="${module.name} ChangeLog"/>
+            <param name="module" expression="${module.name}"/>
+            <param name="cvsweb" expression="http://211.100.227.107/cgi-bin/viewcvs.cgi/"/>
+        </style>
+    </target>
+
+</project>

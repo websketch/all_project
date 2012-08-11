@@ -1,0 +1,19 @@
+/add_block.sql/1.1.2.8/Fri Nov 11 19:52:02 2005//TPortal-CP-M5
+/add_data.sql/1.1.2.1/Mon Oct 31 09:39:15 2005//TPortal-CP-M5
+/build-data.xml/1.1.2.7/Fri Sep 30 07:02:45 2005//TPortal-CP-M5
+/cls_mapping_data7.sql/1.1.2.5/Mon Oct 17 10:47:27 2005//TPortal-CP-M5
+/db_modify.log/1.1.2.1/Tue Nov  1 08:46:24 2005//TPortal-CP-M5
+/mapping_actor3.sql/1.1.2.1/Tue Sep 20 02:38:34 2005//TPortal-CP-M5
+/mapping_content2.sql/1.1.2.3/Wed Nov  9 06:39:25 2005//TPortal-CP-M5
+/mapping_cpm5_udb.sql/1.1.2.2/Fri Nov  4 03:10:09 2005//TPortal-CP-M5
+/mapping_other6.sql/1.1.2.2/Tue Nov  1 08:18:40 2005//TPortal-CP-M5
+/mapping_sports5.sql/1.1.2.2/Mon Oct 17 10:47:27 2005//TPortal-CP-M5
+/mapping_wttc4.sql/1.1.2.1/Tue Sep 20 02:38:34 2005//TPortal-CP-M5
+D/model////
+/modify_banners.sql/1.1.2.5/Fri Nov  4 03:58:58 2005//TPortal-CP-M5
+/modify_mzus_model1.sql/1.1.2.2/Tue Nov  1 08:18:40 2005//TPortal-CP-M5
+/offsite_data.sh/1.1.2.20/Wed Nov  9 03:16:07 2005//TPortal-CP-M5
+/onsite_data.sh/1.1.2.19/Mon Nov  7 03:06:10 2005//TPortal-CP-M5
+/udb-data.sh/1.1.2.1/Wed Nov  2 09:49:46 2005//TPortal-CP-M5
+/udb_init_data.sql/1.1.2.1/Wed Nov  2 09:49:46 2005//TPortal-CP-M5
+/udb_model.sql/1.1.2.1/Wed Nov  2 09:49:46 2005//TPortal-CP-M5

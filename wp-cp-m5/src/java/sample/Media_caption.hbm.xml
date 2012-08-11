@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+<class name="sample.Media_caption" table="media_caption">
+<composite-id>
+<key-property column="media_id" length="11" name="media_id" type="integer"/>
+<key-property column="lang_id" length="11" name="lang_id" type="integer"/>
+</composite-id>
+<property column="name" length="255" name="name" type="string"/>
+<property column="description" length="16777215" name="description" type="string"/>
+<property column="location" length="255" name="location" type="string"/>
+<property column="premiere_area" length="255" name="premiere_area" type="string"/>
+<property column="metadata" length="16777215" name="metadata" type="string"/>
+<property column="preview" length="255" name="preview" type="string"/>
+<property column="highlight" length="255" name="highlight" type="string"/>
+
+<property column="create_time" length="19" name="create_time" type="timestamp"/>
+<property column="creater" length="255" name="creater" type="string"/>
+<property column="update_time" length="19" name="update_time" type="timestamp"/>
+<property column="updater" length="255" name="updater" type="string"/>
+
+
+
+
+<!--<many-to-one class="sample.Media" column="media_id" insert="false" name="media" not-null="false" update="false"/>-->
+</class>
+</hibernate-mapping>

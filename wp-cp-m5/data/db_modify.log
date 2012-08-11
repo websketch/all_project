@@ -1,0 +1,3 @@
+drop table email_list;
+alter table user add column notify_news char(1) after stauts;
+alter table mail_list add column name varchar(255) after email;

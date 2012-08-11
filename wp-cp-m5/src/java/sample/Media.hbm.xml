@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Mon May 23 15:34:23 CST 2005                         -->
+<hibernate-mapping package="sample">
+
+	<class name="sample.Media" table="media">
+		<id name="media_id" column="media_id" type="integer"
+			length="11">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" type="string" length="255" />
+		<property name="homepage" column="homepage" type="string"
+			length="255" />
+		<property name="level" column="level" type="string"
+			length="255" />
+		<property name="premiere" column="premiere" type="date"
+			length="10" />
+		<property name="upc" column="upc" type="string" length="255" />
+		<property name="leng" column="leng" type="string" length="255" />
+		<property name="status" column="status" type="string"
+			length="255" />
+		<property name="starttime" column="starttime" type="timestamp"
+			length="10" />
+		<property name="endtime" column="endtime" type="timestamp"
+			length="10" />
+		<property name="subtitle" column="subtitle" type="string"
+			length="10" />
+		<property name="voice" column="voice" type="string" length="10" />
+		<property name="size" column="size" type="string" length="10" />
+		<property name="release_time" column="release_time"
+			type="timestamp" length="19" />
+		<property name="close_time" column="close_time" type="timestamp"
+			length="19" />
+		<property name="release" column="release" type="string"
+			length="1" />
+		<property name="clicked" column="clicked" type="long"
+			length="20" />
+		<property name="play" column="play" type="long" length="20" />
+		<property name="download" column="download" type="long"
+			length="20" />
+		
+		<set lazy="false" name="captions">
+			<key column="media_id" />
+			<one-to-many class="sample.Media_caption" />
+		</set>
+		
+		<bag batch-size="1" inverse="true" lazy="false" name="photos"
+			table="photo">
+			<key column="media_id" />
+			<one-to-many class="sample.Photo" />
+		</bag>
+
+	</class>
+
+</hibernate-mapping>

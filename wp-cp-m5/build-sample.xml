@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="portal-cp sample" default="deploy" basedir=".">
+
+    <property environment="env" />    
+    <property file="build.properties"/>
+    <tstamp>
+        <format property="today" pattern="yyyyMMdd"/>
+    </tstamp>
+    
+    <!-- predefine classpath -->
+    <path id="compile.classpath">
+        <pathelement location="${lib.dir}/commons-beanutils-1.7.0.jar"/>
+        <pathelement location="${lib.dir}/commons-digester-1.7.jar"/>
+        <pathelement location="${lib.dir}/commons-lang-2.0.jar"/>
+        <pathelement location="${env.CATALINA_HOME}/common/lib/servlet-api.jar"/>
+        <pathelement location="${lib.dir}/struts-1.2.7.jar"/>
+    </path>
+
+    <path id="hibernate.classpath">
+        <pathelement location="${lib.dir}/hibernate-2.1.8.jar"/>
+    </path>
+
+    <path id="base.classpath">
+        <pathelement location="${lib.dir}/portal-base.jar"/>
+    </path>
+
+    <!-- init directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${webapp.dir}/WEB-INF/classes"/>
+        <mkdir dir="${webapp.dir}/WEB-INF/lib"/>
+    </target>
+
+    <!-- compile source code -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}/java"
+               destdir="${build.dir}/classes"
+               encoding="${source.encoding}"
+               debug="${debug.mode}"
+               verbose="${debug.mode}"
+               deprecation="${debug.mode}"
+               target="${jvm.version}">
+            <include name="sample/**" />
+            <classpath refid="compile.classpath" />
+            <classpath refid="hibernate.classpath" />
+            <classpath refid="base.classpath" />
+        </javac>
+    </target>
+    
+    <target name="build" depends="compile">
+        <copy todir="${build.dir}/classes">
+            <fileset dir="${src.dir}/java">
+                <include name="sample/*.xml"/>
+            </fileset>
+        </copy>
+        <jar jarfile="${build.dir}/sample-${today}.jar" basedir="${build.dir}/classes">
+            <include name="sample/**"/>
+        </jar>
+        <jar jarfile="${build.dir}/sample-i18n.jar" basedir="${src.dir}/resources">
+            <include name="sample/**"/>
+        </jar>
+    </target>
+
+    <target name="deploy" depends="build, prepare">
+        <copy todir="${webapp.dir}/WEB-INF/classes">
+            <fileset dir="${conf.dir}">
+                <include name="ehcache.xml"/>
+                <include name="log4j.properties"/>
+                <include name="hibernate.cfg.xml"/>
+                <include name="hibernate.properties"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/WEB-INF/lib">
+            <fileset dir="${build.dir}">
+                <include name="sample-${today}.jar"/>
+                <include name="sample-i18n.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="prepare" depends="init">
+        <copy todir="${webapp.dir}/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+                <include name="commons-beanutils-1.7.0.jar"/>
+                <include name="commons-digester-1.7.jar"/>
+                <include name="log4j-1.2.9.jar"/>
+                <include name="struts-1.2.7.jar"/>
+                <include name="mysql-connector-java-3.0.16-ga-bin.jar"/>
+
+                <include name="hibernate-2.1.8.jar"/>
+                <include name="dom4j-1.4.jar"/>
+                <include name="asm-1.5.3.jar"/>
+                <include name="cglib-2.1.jar"/>
+                <include name="c3p0-0.9.0-pre6.jar"/>
+                <include name="commons-collections-2.1.jar"/>
+                <include name="commons-lang-2.0.jar"/>
+                <include name="commons-logging-1.0.4.jar"/>
+                <include name="ehcache-0.9.jar"/>
+                <include name="jta-1_0_1B.jar"/>
+                <include name="odmg-3.0.jar"/>
+
+                <include name="jstl-1_1-mr2-api.jar"/>
+                <include name="standard-1.1.2.jar"/>
+
+                <include name="portal-base.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="${webapp.dir}/WEB-INF/classes"/>
+        <delete dir="${webapp.dir}/WEB-INF/lib"/>
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="cvslog">
+        <cvschangelog destfile="changelog.xml" daysinpast="${daysinpast}"/>
+        <style in="changelog.xml"
+               out="changelog.html"
+               style="${ant.home}/etc/changelog.xsl">
+            <param name="title" expression="${module.name} ChangeLog"/>
+            <param name="module" expression="${module.name}"/>
+            <param name="cvsweb" expression="http://211.100.227.107/cgi-bin/viewcvs.cgi/"/>
+        </style>
+    </target>
+
+</project>

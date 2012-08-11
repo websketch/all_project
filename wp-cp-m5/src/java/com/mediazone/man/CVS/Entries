@@ -1,0 +1,17 @@
+/AuthorizeTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/BaseManTransaction.java/1.1.2.6/Tue Nov 29 20:46:26 2005//TPortal-CP-M5
+/ContentTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/DeAuthorizeTransaction.java/1.1.2.1/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/ManHandler.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/ManResponseCodes.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/ManValidator.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/PurchaseTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/RegisterUserTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/UserForgotPassword.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/UserInfoTransaction.java/1.1.2.5/Tue Nov 29 20:46:26 2005//TPortal-CP-M5
+/UserLoginTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/UserLogoutTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+/UserPaymentInformationTransaction.java/1.1.2.3/Tue Sep 20 11:19:56 2005//TPortal-CP-M5
+D/bean////
+D/dao////
+D/form////

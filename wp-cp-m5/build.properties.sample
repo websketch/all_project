@@ -1,0 +1,55 @@
+project.name=${app.name}-${app.version}
+author.name=
+
+app.name=wp-cp
+app.version=m5
+app.tag=Portal-CP-M5
+
+
+# Java Compiler
+source.encoding=UTF-8
+resource.encoding=UTF-8
+copyright=Copyright &#169; 2004, 2005, 2006 XpatriNet. All Rights Reserved.
+jvm.version=1.4
+debug.mode=off
+verbose.mode=off
+
+
+WP_BASE_HOME=../wp-base-m2
+APP_DATA_HOME=../${app.name}-data-${app.version}
+APP_HOME=.
+
+build.dir=${APP_HOME}/build
+data.dir=${APP_DATA_HOME}
+lib.dir=${WP_BASE_HOME}/lib
+src.dir=${APP_HOME}/src
+webapp.dir=${APP_HOME}/webapp
+
+
+# =====================================
+# For build.xml only
+# =====================================
+
+# For ChangeLog use
+daysinpast=30
+
+
+# Application Server
+appserver.name=catalina
+appserver.host=localhost
+
+
+# For CATALINA
+catalina.home=${env.CATALINA_HOME}
+catalina.manager.url=http://${appserver.host}:8080/manager
+catalina.username=manager
+catalina.password=
+
+
+# For Database
+datasource.name=jdbc/portal
+database.driver=com.mysql.jdbc.Driver
+database.name=wp_m1
+database.url=jdbc:mysql://localhost:3306/${database.name}?useUnicode=true&amp;characterEncoding=utf8
+database.username=${database.name}
+database.password=${database.name}

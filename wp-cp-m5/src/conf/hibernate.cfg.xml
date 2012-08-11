@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN" "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">net.sf.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.datasource">java:comp/env/jdbc/portal</property> 
+        <!-- 
+    	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+  		<property name="connection.url">jdbc:mysql://192.168.1.2:3306/mz_cpm5</property>
+   		<property name="connection.username">xugeng</property>
+  		<property name="connection.password">123456</property>		
+        <property name="show_sql">false</property>
+        -->
+    	<!--dao mapping -->
+    	    <mapping resource="hbm/Actor.hbm.xml"/>
+    	    <mapping resource="hbm/Banners.hbm.xml"/>
+    	    <mapping resource="hbm/Block.hbm.xml"/>
+    	    <mapping resource="hbm/Category.hbm.xml"/>
+    	    <mapping resource="hbm/ContentItemHits.hbm.xml"/>
+    	    <mapping resource="hbm/Country.hbm.xml"/>
+    	    <mapping resource="hbm/MailList.hbm.xml"/>
+    	    <mapping resource="hbm/Media.hbm.xml"/>
+    	    <mapping resource="hbm/News.hbm.xml"/>
+    	    <mapping resource="hbm/Photo.hbm.xml"/>
+    	    <mapping resource="hbm/Policy.hbm.xml"/>
+    	    <mapping resource="hbm/Position.hbm.xml"/>
+    	    <mapping resource="hbm/PricePolicy.hbm.xml"/>
+    	    <mapping resource="hbm/Review.hbm.xml"/>
+    	    <mapping resource="hbm/UnsubscribeList.hbm.xml"/>
+    	    <mapping resource="hbm/User.hbm.xml"/>
+    	    
+<!--    	<mapping resource="com/mediazone/bean/Block.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Block_element.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Category.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Category_caption.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Category_relation.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Media_category.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Media.hbm.xml"/>-->
+<!--      	<mapping resource="com/mediazone/bean/Media_caption.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Photo.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Photo_caption.hbm.xml"/>-->
+<!--     	<mapping resource="com/mediazone/bean/Actor.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Actor_caption.hbm.xml"/>   	-->
+<!--     	<mapping resource="com/mediazone/bean/Item.hbm.xml"/>	-->
+<!--     	<mapping resource="com/mediazone/bean/Distribute_channel.hbm.xml"/>	-->
+<!--     	<mapping resource="com/mediazone/bean/Policy.hbm.xml"/>	-->
+<!--     	<mapping resource="com/mediazone/bean/Price_policy.hbm.xml"/>	-->
+<!--		<mapping resource="com/mediazone/bean/Country.hbm.xml"/>-->
+<!--    	<mapping resource="com/mediazone/bean/Country_caption.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Review.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/News.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/News_caption.hbm.xml"/>	-->
+<!--		<mapping resource="com/mediazone/bean/Media_actor.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Position.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Position_caption.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Content_item_hits.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Content_item_hits_weekly.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Media_flag.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Mail_list.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/Banners.hbm.xml"/>-->
+<!--		<mapping resource="com/mediazone/bean/User.hbm.xml"/>-->
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,102 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+div {
+	font-size: 11px;
+}
+
+button {
+	font-size: 11px;
+}
+
+select {
+	font-size: 11px;
+}
+
+
+input {
+	font-size: 11px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.top_app .right {
+	font-size: 12px;
+	text-align: center;
+}
+
+.top_nav .TopCategory {
+	font-size: 12px;
+	padding-top: 2px;
+
+}
+
+.left_bar_box2 .title, 
+.left_bar_box3 .title, 
+.left_bar_box4 .title {
+	font-size: 12px;
+	padding-top: 4px;
+	font-weight: bold;
+}
+
+.footer_nav a,
+.top_app .right a {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:visited,
+.top_app .right a:visited {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:link,
+.top_app .right a:link {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:active,
+.top_app .right a:active {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:hover,
+.top_app .right a:hover {
+	color: Black;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:active {
+	color: #00CCFF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF9900;
+	text-decoration: underline;
+}
+.lianjie {
+	color: #0099ff;
+	text-decoration: underline;
+}
+
+.footer_nav a {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.current_place {
+	font-size: 12px;
+}

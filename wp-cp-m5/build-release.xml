@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<project name="wp-cp Project" default="usage" basedir=".">
+
+    <property environment="env" />    
+    <property file="build-release.properties"/>
+
+    <available file="build-release.properties" property="build-release.properties.present"/>
+    <fail unless="build-release.properties.present">
+[Help] Copy build-release.properties.sample to build-release.properties, then customize it. If you are running me first time. You'd better read README before that."
+    </fail>
+
+    <import file="${WP_BASE_HOME}/buildsystem/build.release-targets.xml" optional="false"/>
+
+    <import file="${lib.dir}/libraries.xml" optional="false"/>
+    <import file="${src.dir}/build-conf.xml" optional="false"/>
+    <import file="${src.dir}/build-java.xml" optional="false"/>
+    <import file="${src.dir}/build-resources.xml" optional="false"/>
+
+    <patternset id="pattern.lib.wp-base-hibernate">
+        <include name="wp-base-m2-hibernate.jar"/>
+    </patternset>
+    <path id="lib.wp-base-hibernate">
+        <fileset dir="${WP_BASE_HOME}/build">
+            <patternset refid="pattern.lib.wp-base-hibernate"/>
+        </fileset>
+    </path>
+
+    <target name="dist.app" depends="init, jar, jar-i18n">
+        <war destfile="${dist.dir}/${tag.nightly.current}-App.war" webxml="${webapp.dir}/WEB-INF/web.xml">
+            <fileset dir="${webapp.dir}">
+                <include name="adult/**"/>
+                <include name="auth/**"/>
+                <include name="content/**"/>
+                <include name="login/**"/>
+                <include name="scripts/**"/>
+                <include name="sports/**"/>
+                <include name="static/**"/>
+                <include name="themes/**"/>
+                <include name="*.jsp"/>
+            </fileset>
+            <webinf dir="${webapp.dir}/WEB-INF">
+                <include name="tld/**"/>
+                <include name="struts/**"/>
+            </webinf>
+            <classes dir="${src.dir}/conf">
+                <patternset refid="pattern.conf.dist"/>
+            </classes>
+            <lib dir="${build.dir}">
+                <include name="${project.name}.jar"/>
+                <include name="${project.name}-i18n-en_US.jar"/>
+                <include name="${project.name}-i18n-zh_CN.jar"/>
+                <include name="${project.name}-i18n-zh_TW.jar"/>
+            </lib>
+            <lib dir="${WP_BASE_HOME}/build">
+                <patternset refid="pattern.lib.wp-base-hibernate"/>
+            </lib>
+        </war>
+        <checksum>
+            <fileset dir="${dist.dir}">
+                <include name="${tag.nightly.current}-App.war"/>
+            </fileset>
+        </checksum>
+    </target>
+
+    <target name="dist.data">
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Data.tar.gz" compression="gzip">
+            <tarfileset dir="${WP_APP_DATA_HOME}" prefix="${project.name}-data">
+                <include name="portal_cp_m5_data.dmp"/>
+            </tarfileset>
+        </tar>
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Photo.tar.gz" compression="gzip">
+            <tarfileset dir="${WP_APP_HOME}" prefix="${project.name}">
+                <include name="webapp/images/photo/**"/>
+                <include name="webapp/images/sports/**"/>
+            </tarfileset>
+        </tar>
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Banner.tar.gz" compression="gzip">
+            <tarfileset dir="${WP_APP_HOME}" prefix="${project.name}">
+                <include name="webapp/images/banner/**"/>
+            </tarfileset>
+        </tar>
+        <checksum>
+            <fileset dir="${dist.dir}">
+                <include name="${tag.nightly.current}-Data.tar.gz"/>
+                <include name="${tag.nightly.current}-Photo.tar.gz"/>
+                <include name="${tag.nightly.current}-Banner.tar.gz"/>
+            </fileset>
+        </checksum>
+    </target>
+
+    <target name="dist.src">
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Src.tar.gz" compression="gzip">
+            <tarfileset dir="." prefix="${project.name}">
+                <include name="build.properties.sample"/>
+                <include name="build.xml"/>
+                <include name="README"/>
+            </tarfileset>
+            <tarfileset dir="./data" prefix="${project.name}/data">
+                <include name="**"/>
+                <exclude name="of.sh"/>
+                <exclude name="on.sh"/>
+            </tarfileset>
+            <tarfileset dir="./src" prefix="${project.name}/src">
+                <include name="conf/**"/>
+                <exclude name="conf/lang/**"/>
+                <include name="java/com/**"/>
+                <include name="java/org/**"/>
+                <include name="resources/**"/>
+                <exclude name="resources/sample/**"/>
+                <include name="test/**"/>
+                <include name="build-java.xml"/>
+                <include name="build-resources.xml"/>
+                <include name="build-test.xml"/>
+            </tarfileset>
+            <tarfileset dir="${WP_BASE_HOME}/buildsystem" prefix="${project.name}/buildsystem">
+                <include name="*.xml"/>
+            </tarfileset>
+            <tarfileset dir="${WP_BASE_HOME}/lib" prefix="${project.name}/lib">
+                <include name="libraries.xml"/>
+            </tarfileset>
+        </tar>
+        <checksum file="${dist.dir}/${tag.nightly.current}-Src.tar.gz"/>
+    </target>
+
+    <target name="dist.diff" depends="cvsdiff">
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Diff.tar.gz" compression="gzip">
+            <tarfileset dir="${build.dir}" prefix="${project.name}">
+                <include name="${tag.nightly.current}.patch"/>
+                <include name="${tag.nightly.current}.log"/>
+            </tarfileset>
+        </tar>
+        <checksum file="${dist.dir}/${tag.nightly.current}-Diff.tar.gz"/>
+    </target>
+
+    <target name="dist.lib">
+        <tar destfile="${dist.dir}/${tag.nightly.current}-Lib.tar.gz" compression="gzip">
+            <tarfileset dir="${lib.dir}" prefix="${project.name}/lib">
+                <patternset refid="pattern.libraries.runjava"/>
+            </tarfileset>
+        </tar>
+        <checksum>
+            <fileset dir="${dist.dir}">
+                <include name="${tag.nightly.current}-Lib.tar.gz"/>
+            </fileset>
+        </checksum>
+    </target>
+
+    <target name="dist-all" depends="dist.app, dist.src, dist.data, dist.diff, dist.lib"/>
+
+</project>

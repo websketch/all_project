@@ -1,0 +1,58 @@
+project.name = ${app.name}-${app.version}
+author.name =
+
+app.name=wp-cp
+app.version=m5
+app.tag=Portal-CP-M5
+
+
+# Java Compiler
+source.encoding=UTF-8
+resource.encoding=UTF-8
+copyright=Copyright &#169; 2004, 2005, 2006 XpatriNet. All Rights Reserved.
+jvm.version=1.4
+debug.mode=off
+verbose.mode=no
+
+
+WP_BASE_HOME=../wp-base-m2
+WP_APP_DATA_HOME=../${app.name}-data-${app.version}
+WP_APP_HOME=.
+
+build.dir=${WP_APP_HOME}/build
+data.dir=${WP_APP_DATA_HOME}
+lib.dir=${WP_BASE_HOME}/lib
+src.dir=${WP_APP_HOME}/src
+webapp.dir=${WP_APP_HOME}/webapp
+
+
+
+# =====================================
+# For build-release.xml only
+# =====================================
+
+dist.dir=dist
+
+cvs.repository=:pserver:USERID@222.66.46.90:/cvsroot/xpatrinet
+
+tag.milestone=${app.tag}
+tag.nightly.current=${tag.milestone}-N
+tag.nightly.previous=${tag.milestone}-N
+
+tag.current=$tag.nightly.current}
+tag.previous=${tag.nightly.previous}
+
+ftp.server=
+ftp.remotedir=
+ftp.userid=
+ftp.password=
+
+ftp.server.sh=
+ftp.remotedir.sh=
+ftp.userid.sh=
+ftp.password.sh=
+
+mail.from=
+mail.replyto=
+mail.tolist=
+mail.files=

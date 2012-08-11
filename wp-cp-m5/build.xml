@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="wp-cp build" default="deploy" basedir=".">
+
+    <property environment="env" />
+    <property file="build.properties"/>
+
+    <available file="build.properties" property="build.properties.present"/>
+    <fail unless="build.properties.present">
+[Help] Copy build.properties.sample to build.properties, then customize it. If you are running me first time. You'd better read README before that."
+    </fail>
+
+    <import file="${WP_BASE_HOME}/buildsystem/build.common-targets.xml" optional="false"/>
+    <import file="${WP_BASE_HOME}/buildsystem/deploy.${appserver.name}.xml" optional="true"/>
+
+    <import file="${lib.dir}/libraries.xml" optional="false"/>
+    <import file="${src.dir}/build-conf.xml" optional="false"/>
+    <import file="${src.dir}/build-java.xml" optional="false"/>
+    <import file="${src.dir}/build-resources.xml" optional="false"/>
+    <import file="${src.dir}/build-test.xml" optional="true"/>
+
+    <patternset id="pattern.lib.wp-base-hibernate">
+        <include name="wp-base-m2-hibernate.jar"/>
+    </patternset>
+    <path id="lib.wp-base-hibernate">
+        <fileset dir="${WP_BASE_HOME}/build">
+            <patternset refid="pattern.lib.wp-base-hibernate"/>
+        </fileset>
+    </path>
+
+    <target name="deploy" depends="init, jar, jar-i18n">
+        <copy todir="${webapp.dir}/WEB-INF/classes" verbose="${verbose.mode}">
+            <fileset dir="${src.dir}/conf">
+                <patternset refid="pattern.conf.dev"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/WEB-INF/lib" flatten="true" verbose="${verbose.mode}">
+            <fileset dir="${lib.dir}">
+                <patternset refid="pattern.libraries.runjava"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/WEB-INF/lib" verbose="${verbose.mode}">
+            <fileset dir="${WP_BASE_HOME}/build">
+                <patternset refid="pattern.lib.wp-base-hibernate"/>
+            </fileset>
+            <fileset dir="${build.dir}">
+                <include name="${project.name}.jar"/>
+                <include name="${project.name}-i18n-en_US.jar"/>
+                <include name="${project.name}-i18n-zh_CN.jar"/>
+                <include name="${project.name}-i18n-zh_TW.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>

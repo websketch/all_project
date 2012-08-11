@@ -1,0 +1,63 @@
+<project name="Test and Validate">
+
+    <target name="xmlvalidate">
+        <xmlvalidate>
+            <fileset dir="${src.dir}/config">
+                <include name="hibernate.cfg.xml"/>
+            </fileset>
+            <fileset dir="${webapp.dir}/WEB-INF/struts-config">
+                <include name="*.xml"/>
+            </fileset>
+            <fileset dir="${webapp.dir}/WEB-INF">
+                <include name="web.xml"/>
+            </fileset>
+        </xmlvalidate>
+        <!--xmlvalidate file="${src.dir}/conf/ehcache.xml" warn="true">
+            <attribute name="http://apache.org/xml/features/validation/schema" value="true"/>
+            <property name="http://www.w3.org/2001/XMLSchema" value="${src.dir}/resources/xsd/ehcache.xsd"/>
+        </xmlvalidate-->
+    </target>
+
+    <target name="junit-compile" depends="init">
+        <patternset id="test.java">
+            <include name="com/chinaportal/**/*.java"/>
+        </patternset>
+        <javac srcdir="${src.dir}/test/java" destdir="${build.dir}/test/classes">
+            <patternset refid="test.java"/>
+            <classpath location="${lib.dir}/portal-base.jar"/>
+            <classpath location="${build.dir}/${project.name}.jar"/>
+            <classpath refid="lib.junit"/>
+        </javac>
+    </target>
+
+    <available property="junit.present" classname="junit.framework.TestCase" />
+
+    <target name="junit" depends="jar, junit-compile" if="junit.present">
+        <junit printsummary="yes">
+            <classpath refid="libraries.buildjava"/>
+            <classpath>
+                <pathelement location="${lib.dir}/portal-base.jar"/>
+                <pathelement location="${build.dir}/${project.name}.jar"/>
+                <pathelement location="${build.dir}/test/classes"/>
+            </classpath>
+            <batchtest todir="${build.dir}/test/report">
+                <formatter type="xml"/>
+                <fileset dir="${src.dir}/test/java">
+                    <include name="com/chinaportal/**/*Test*.java"/>
+                    <exclude name="com/chinaportal/**/AllTests.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
+        <junitreport todir="${build.dir}/test/report">
+            <fileset dir="${build.dir}/test/report">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${build.dir}/test/report/html"/>
+        </junitreport>
+    </target>
+
+    <target name="junit-clean">
+        <delete dir="${build.dir}/test/classes"/>
+    </target>
+
+</project>

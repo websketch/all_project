@@ -1,0 +1,35 @@
+<project name="build java">
+	
+    <target name="compile">
+        <patternset id="src.java">
+            <include name="com/chinaportal/portal/**/*.java" />
+            <include name="com/mediazone/dao/**/*.java"/>
+            <include name="com/mediazone/filter/*.java"/>
+            <include name="com/mediazone/selfcare/**/*.java"/>
+            <include name="com/mediazone/util/**/*.java"/>
+            <include name="org/apache/**"/>
+        </patternset>
+        <javac srcdir="${src.dir}/java"
+               destdir="${build.dir}/classes"
+               encoding="${source.encoding}"
+               debug="${debug.mode}"
+               verbose="${verbose.mode}"
+               deprecation="${debug.mode}"
+               target="${jvm.version}">
+            <patternset refid="src.java"/>
+            <classpath refid="libraries.buildjava"/>
+            <classpath refid="lib.wp-base-hibernate"/>
+        </javac>
+    </target>
+	
+	<target name="jar" depends="compile">
+        <jar jarfile="${build.dir}/${project.name}.jar">
+            <fileset dir="${build.dir}/classes">
+                <include name="com/chinaportal/portal/**"/>
+                <include name="com/mediazone/**"/>
+                <include name="org/apache/**"/>
+            </fileset>
+        </jar>
+	</target>
+
+</project>

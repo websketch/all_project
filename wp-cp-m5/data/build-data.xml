@@ -1,0 +1,31 @@
+<project name="Data">
+
+    <target name="photo-mapping">
+        <!--scp todir="${webapp.dir}/images/photo" verbose="yes">
+            <fileset dir="@211.100.227.107:/home/myuan/sandbox/chinaportal/html/mediafiles/photos">
+                <include name="**/*.jpg"/>
+            </fileset>
+        </scp-->
+        <copy todir="${webapp.dir}/images/photo" verbose="yes" failonerror="false">
+            <fileset dir="${CPM4_HOME}/html/mediafiles/photos">
+                <include name="**/*.jpg"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/images/photo/large" verbose="yes" failonerror="false">
+            <fileset dir="${CPM4_HOME}/html/mediafiles/sports">
+                <include name="*.jpg"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/images/photo/large" verbose="yes" failonerror="false">
+            <fileset dir="${CPM4_HOME}/html/mediafiles/wttc">
+                <include name="*.jpg"/>
+            </fileset>
+        </copy>
+        <copy todir="${webapp.dir}/images/news" verbose="yes" failonerror="false">
+            <fileset dir="${CPM4_HOME}/html/mediafiles/news">
+                <include name="*.jpg"/>
+            </fileset>
+        </copy>
+    </target>
+
+</project>

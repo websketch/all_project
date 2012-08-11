@@ -1,0 +1,55 @@
+<project name="catalina">
+
+    <taskdef resource="org/apache/catalina/ant/catalina.tasks" onerror="ignore">
+        <classpath>
+            <fileset dir="${env.CATALINA_HOME}/server/lib">
+                <include name="catalina.jar"/>
+                <include name="catalina-ant.jar"/>
+            </fileset>
+        </classpath>
+    </taskdef>
+
+    <target name="catalina-reload" description="Reload application in tomcat">
+        <reload url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}" path="/${project.name}" />
+    </target>
+
+    <available file="${src.dir}/conf/catalina-context.xml" property="catalina.cfg.present"/>
+    <target name="catalina-deploy" if="catalina.cfg.present">
+        <copy file="${src.dir}/conf/catalina-context.xml" tofile="${build.dir}/${project.name}.xml"/>
+        <replace file="${build.dir}/${project.name}.xml" propertyFile="build.properties">
+            <replacefilter token="@project.name@" value="${project.name}"/>
+            <replacefilter token="@webapp.dir@" value="${basedir}/${webapp.dir}"/>
+            <replacefilter token="@database.driver@" property="database.driver"/>
+            <replacefilter token="@database.url@" property="database.url"/>
+            <replacefilter token="@database.username@" property="database.username"/>
+            <replacefilter token="@database.password@" property="database.password"/>
+        </replace>
+        <copy file="${build.dir}/${project.name}.xml" todir="${env.CATALINA_HOME}/conf/Catalina/localhost"/>
+        <copy file="${lib.dir}/${lib.mysql.driver}" todir="${env.CATALINA_HOME}/common/lib"/>
+        <!--deploy url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}" path="/${project.name}" localWar="file:${build.dir}/${project.name}.xml" /-->
+    </target>
+
+    <target name="catalina-undeploy" depends="catalina-clean">
+        <undeploy url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}" path="/${project.name}" />
+        <delete file="${env.CATALINA_HOME}/conf/Catalina/localhost/${project.name}.xml"/>
+        <delete file="${env.CATALINA_HOME}/common/lib/${lib.mysql.driver}"/>
+    </target>
+
+    <target name="catalina-install">
+        <install url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}" path="/${project.name}" war=""/>
+    </target>
+
+    <target name="catalina-start">
+        <start url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}" path="/${project.name}" />
+    </target>
+
+    <target name="catalina-list">
+        <list url="${catalina.manager.url}" username="${catalina.username}" password="${catalina.password}"/>
+    </target>
+
+    <target name="catalina-clean">
+        <delete dir="${env.CATALINA_HOME}/work/Catalina/localhost"/>
+    </target>
+
+
+</project>

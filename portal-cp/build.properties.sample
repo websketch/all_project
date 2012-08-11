@@ -1,0 +1,22 @@
+project.name = portal-cp
+version =
+author.name =
+
+source.encoding = UTF-8
+resource.encoding = UTF-8
+copyright = Copyright &#169; 2005 mediazone(Shanghai) Corporation. All Rights Reserved.
+jvm.version = 1.4
+debug.mode=off
+
+
+build.dir=build
+lib.dir=lib
+src.dir=src
+conf.dir=${src.dir}/conf
+webapp.dir=webapp
+
+# Runtime
+log.dir=logs
+
+# For ChangeLog use
+daysinpast=8

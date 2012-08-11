@@ -1,0 +1,11 @@
+<project name="MySQL tasks">
+
+    <target name="mysql-deploy">
+        <sql driver="${database.driver}" url="${database.url}" userid="${database.username}" password="${database.password}">
+            CREATE DATABASE portal_cp_m5;
+        </sql>
+        <sql driver="${database.driver}" url="${database.url}" userid="${database.username}" password="${database.password}" src="${data.dir}/portal_cpm5_model_utf8.sql"/>
+        <sql driver="${database.driver}" url="${database.url}" userid="${database.username}" password="${database.password}" src="${data.dir}/data.sql"/>
+    </target>
+
+</project>

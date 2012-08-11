@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="categoryForm" type="com.chinaportal.portal.category.CategoryForm" /> 
+	</form-beans>
+	<action-mappings>
+		<action name="categoryForm" path="/adultAction"   type="com.chinaportal.portal.adult.AdultAction" scope="request">
+			<forward name="adult_home" path="/adult_home.jsp"/>
+			<forward name="adult_list" path="/adult_list.jsp"/>
+			<forward name="adult_catalog" path="/adult_catalog.jsp"/>
+			<forward name="adult_poplist" path="/adult_poplist.jsp"/>
+			<forward name="warning" path="/goto_warning.jsp"/>
+		</action>
+		<action path="/getDetail" type="com.chinaportal.portal.detail.DetailAction" scope="request" >
+      		<forward name="success" path="/detail.jsp" />
+    	</action>
+	</action-mappings>
+	<message-resources parameter="content.MessageResources"  key="org.apache.struts.action.MESSAGE"/>  
+	<message-resources parameter="adult.AdultMessageResources" key="adult"/>
+</struts-config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 2.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+<hibernate-mapping>
+<class name="sample.Photo" table="photo">
+<id name="photo_id" column="photo_id" type="integer" length="11">
+<generator class="native"/>
+</id>
+<property name="category_id" column="category_id" type="integer" length="11"/>
+<property name="media_id" column="media_id" type="integer" length="11"/>
+<property name="actor_id" column="actor_id" type="integer" length="11"/>
+<property name="photo" column="photo" type="string" length="255"/>
+<property name="create_time" column="create_time" type="timestamp" length="19"/>
+<property name="creater" column="creater" type="string" length="255"/>
+<property name="update_time" column="update_time" type="timestamp" length="19"/>
+<property name="updater" column="updater" type="string" length="255"/>
+
+<set lazy="true" name="captions">
+	<key column="photo_id"/>
+	<one-to-many class="sample.Photo_caption"/>
+</set>
+
+</class>
+</hibernate-mapping>

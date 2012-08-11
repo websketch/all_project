@@ -1,0 +1,91 @@
+body {
+	font: 12px;
+	font-family: ËÎÌו;
+}
+
+div {
+	font-size: 12px;
+}
+
+button {
+	font-size: 12px;
+}
+
+select {
+	font-size: 12px;
+}
+
+
+input {
+	font-size: 11px;
+	font-family: "Courier New", Courier, monospace;
+}
+
+.top_app {
+	font-size: 12px;
+}
+
+.top_nav .TopCategory {
+	font-size: 12px;
+}
+
+.left_bar_box1 button {
+	font-size: 12px;
+}
+
+.footer_nav a,
+.top_app .right a {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:visited,
+.top_app .right a:visited {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:link,
+.top_app .right a:link {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:active,
+.top_app .right a:active {
+	color: White;
+	text-decoration: none;
+}
+
+.footer_nav a:hover,
+.top_app .right a:hover {
+	color: Black;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:active {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF9900;
+	text-decoration: underline;
+}
+.lianjie {
+	color: #0099ff;
+	text-decoration: underline;
+}
+
+.footer_nav a {
+	font-size: 12px;
+}
+

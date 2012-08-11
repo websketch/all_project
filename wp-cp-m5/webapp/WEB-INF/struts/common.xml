@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="pageForm" type="com.chinaportal.portal.base.PageForm" /> 
+		<form-bean name="categoryForm" type="com.chinaportal.portal.category.CategoryForm" />        
+	  <form-bean name="CommentForm" type="com.chinaportal.portal.comment.CommentForm"/>
+	  <form-bean name="newsForm" type="com.chinaportal.portal.news.NewsForm"/>
+	  <form-bean name="searchForm" type="com.chinaportal.portal.search.SearchForm"/>	
+	  <form-bean name="emailForm" type="com.chinaportal.portal.email.EmailForm"/>	    
+	</form-beans>
+
+	<!-- ========== Global Forward Definitions ============================== -->
+	<global-forwards>
+		<forward name="logon"    path="/Login.jsp" />
+		<forward name="register" path="/Register.jsp" />
+		<forward name="error"    path="/Error.jsp" />
+	</global-forwards>
+
+	<!-- ========== Action Mapping Definitions ============================== -->
+	<action-mappings>
+		<action path="/getHomePage" type="com.chinaportal.portal.homepage.HomePageAction" scope="request">
+			<forward name="success" path="/content/homepage/homepage.jsp" />
+		</action>
+		<action path="/changeLang" type="com.chinaportal.portal.base.ChangeLangAction" scope="request">
+			<forward name="success" path="/getHomePage.do" redirect="true" />
+		</action>		
+		<action path="/getIndex" type="sample.SampleAction" scope="request">
+			<forward name="success" path="/getHomePage.do"  />
+		</action>
+		
+    	<action name="categoryForm" path="/getCategory" type="com.chinaportal.portal.category.CategoryAction" scope="request" >
+      		<forward name="success" path="/content/category/category.jsp" />
+    	</action>
+     	<action path="/getDetail" type="com.chinaportal.portal.detail.DetailAction" scope="request" >
+      		<forward name="success" path="/content/detail/detail.jsp" />
+    	</action>  
+		
+		<action name="CommentForm" path="/comment/CommentAction"   type="com.chinaportal.portal.comment.CommentAction" scope="request">
+			<forward name="success" path="/getDetail.do" redirect="true"/>
+			<forward name="preadd" path="/content/comment/comment_main.jsp"/>
+			<forward name="login_forward" path="/login/login_forward.jsp"/>
+		</action>
+		<action name="categoryForm" path="/specialAction" type="com.chinaportal.portal.special.SpecialAction" scope="request">			
+		     <forward name="smgsample" path="/content/special/smg/smg.jsp"/>
+		     <forward name="smgtomedia" path="/content/special/smg/smg_media.jsp"/>
+		     <forward name="cnysample" path="/content/special/cny/cny.jsp"/>
+		     <forward name="freemedia" path="/content/special/free.jsp"/>
+		</action>
+		<action name="newsForm" path="/news/newsAction"   type="com.chinaportal.portal.news.NewsAction" scope="request">
+			<forward name="news_list" path="/content/news/news_list.jsp"/>
+			<forward name="news_list_sports" path="/content/news/news_list_sports.jsp"/>
+		</action>
+		<action name="searchForm" path="/search/searchAction"   type="com.chinaportal.portal.search.SearchAction" scope="request">
+			<forward name="querysuccess" path="/content/search/search.jsp"/>
+		</action>
+		<action name="emailForm" path="/email/emailAction"   type="com.chinaportal.portal.email.EmailAction" scope="request">
+			<forward name="success" path="/content/email/email_add_success.jsp"/>
+			<forward name="unsubscribe" path="/content/email/unsubscribe_success.jsp"/>
+		</action>
+		<action path="/Homepage" forward="/Homepage.jsp" />
+		<action path="/Static"   forward="/Static.jsp" />
+		<action path="/Search"   forward="/Search.jsp" />
+		<action path="/NewsList" forward="/NewsList.jsp" />
+		<action path="/NewsView" forward="/NewsView.jsp" />
+		
+		<action path="/More"     forward="/content/category/more.jsp" />
+
+	</action-mappings>
+
+	<message-resources parameter="content.MessageResources"  key="org.apache.struts.action.MESSAGE"/>
+	<message-resources parameter="sports.Sports" key="sports"/> 
+	<message-resources parameter="adult.AdultMessageResources" key="adult"/>
+
+</struts-config>

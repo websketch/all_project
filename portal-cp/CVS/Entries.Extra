@@ -1,0 +1,6 @@
+/.cvsignore////*///
+/README////*///
+/build.properties.sample////*///
+/build.xml////*///
+D/lib///////
+D/webapp///////
